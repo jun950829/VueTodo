@@ -4,7 +4,7 @@
     <p>할일 전체: {{ todoList.length }} / 완료된 일 : {{countDone}}/ 해야할 일 : {{todoList.length-countDone}}</p>
     <div>
       <!-- 리스트추가 -->
-      <ListAdd @listAddEvent="todoAdd"></ListAdd>
+      <ListAdd @listAddEvent="todoAdd" @listEditEvent="todoEdit"></ListAdd>
       <!-- 리스트 보여주기 -->
       <List v-bind:todoList="todoList" @list-delete="listDelete" @list-done="listDone"></List>
     </div>
@@ -37,6 +37,10 @@ export default {
     },
     listDone(index,smode) {
         this.todoList[index].mode=smode;
+    },
+    todoEdit(pmsg, pindex) {
+        this.todoList[pindex].msg=pmsg;
+        
     }
   },
   computed: {

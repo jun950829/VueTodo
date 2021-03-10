@@ -5,16 +5,20 @@
             <button v-if="list.mode ==='created'" @click="$emit('list-done',index, 'done')">Done</button>
             <button v-else @click="$emit('list-done',index,'created')">Recheck</button>
             <button @click="$emit('list-delete',index)">Delete</button>
-            <button >Edit</button>
+            <button @click="listEdit(list.msg,index)">Edit</button>
         </div>
     </div>
 </template>
 
 <script>
+import {eventBus} from "../main"
+
 export default {
     props:["todoList"],
     methods:{
-
+        listEdit(msg, index) {
+            eventBus.$emit("list-edit",msg, index)
+        }
     }
 }
 </script>
